@@ -12,7 +12,7 @@ import hexview
 
 class Header(object):
 
-    HEADER_SIZE = int('40', 16)  # 64 byte header
+    HEADER_SIZE = int('20', 16)  # 64 byte header
     LOROM_HEADER = int('7FC0', 16)  # Lowrom bank ends at 7FFF, with no smc header
     HIROM_HEADER = int('FFC0', 16)  # hirom  bank ends at FFFF, with no smc header
 
@@ -88,9 +88,9 @@ class Header(object):
             potential_rom_mapping = self.get_specified_rom_mapping(rom_segment)
 
             if f == self.LOROM_HEADER:
-                possible_types = [32, 48, 50]
+                possible_types = [32, 35, 48, 50]
             else:
-                possible_types = [33, 35, 49, 53]
+                possible_types = [33, 49, 53]
 
             if (checksum_and_complement_verfication == 'ffff') and (potential_rom_mapping[0] in possible_types):
                 self.header = rom_segment
