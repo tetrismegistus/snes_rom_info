@@ -171,6 +171,7 @@ def main(args):
     print()
 
     print('Game Title: {}'.format(header.game_title))
+    print('Rom Mapping: {}'.format(header.rom_mapping))
     print('Rom Type: {}'.format(header.rom_type))
     print('Rom Size: {} MegaBits'.format(header.rom_size))
     print('SRAM Size: {} Kilobits'.format(header.sram_size))
