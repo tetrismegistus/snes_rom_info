@@ -170,7 +170,12 @@ def main(args):
     header = Header(args.filename)
     print()
 
+    if header.smc_offset > 0:
+        smc = 'Yes'
+    else:
+        smc = 'No'
     print('Game Title: {}'.format(header.game_title))
+    print('SMC Header: {}'.format(smc))
     print('Rom Mapping: {}'.format(header.rom_mapping))
     print('Rom Type: {}'.format(header.rom_type))
     print('Rom Size: {} MegaBits'.format(header.rom_size))
