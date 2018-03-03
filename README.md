@@ -4,7 +4,7 @@
 
 ## Requirements
 
-Should work with any standar Python 3 environments.
+Should work with any standard Python 3 environment.
 
 ## Installation
 
