@@ -10,9 +10,11 @@ Should work with any standard Python 3 environment.
 
 You can just clone and run with python:
 
-`$ git clone https://github.com/tetrismegistus/snes_rom_info
- $ cd snes_rom_info
- $ python3 snes_rom_info romname.smc`
+```
+$ git clone https://github.com/tetrismegistus/snes_rom_info
+$ cd snes_rom_info
+$ python3 snes_rom_info romname.smc
+```
 
 Should you choose to download manually, please observe that hexview.py is required in the same directory snes_rom_info.py.
 
