@@ -167,29 +167,34 @@ def read_in_chunks(file_object, chunk_size=500000):
 
 
 def main(args):
-    header = Header(args.filename)
-    print()
+    try:
+        header = Header(args.filename)
+        print()
 
-    if header.smc_offset > 0:
-        smc = 'Yes'
-    else:
-        smc = 'No'
-    print('Game Title: {}'.format(header.game_title))
-    print('SMC Header: {}'.format(smc))
-    print('Rom Mapping: {}'.format(header.rom_mapping))
-    print('Rom Type: {}'.format(header.rom_type))
-    print('Rom Size: {} MegaBits'.format(header.rom_size))
-    print('SRAM Size: {} Kilobits'.format(header.sram_size))
-    print('Country: {}'.format(header.country))
-    print('Licensee: {}'.format(header.licensee))
-    print('Game Version: {}'.format(header.version))
-    print('Checksum Complement: {}'.format(header.checksum_complement))
-    print('Specified Checksum: {}'.format(header.header_checksum))
-    print('Calculated checksum: {}'.format(header.calculated_checksum))
+        if header.smc_offset > 0:
+            smc = 'Yes'
+        else:
+            smc = 'No'
 
-    print()
-    hexview.print_canonical(header.header, header.header_address)
-    print()
+        print('Game Title: {}'.format(header.game_title))
+        print('SMC Header: {}'.format(smc))
+        print('Rom Mapping: {}'.format(header.rom_mapping))
+        print('Rom Type: {}'.format(header.rom_type))
+        print('Rom Size: {} MegaBits'.format(header.rom_size))
+        print('SRAM Size: {} Kilobits'.format(header.sram_size))
+        print('Country: {}'.format(header.country))
+        print('Licensee: {}'.format(header.licensee))
+        print('Game Version: {}'.format(header.version))
+        print('Checksum Complement: {}'.format(header.checksum_complement))
+        print('Specified Checksum: {}'.format(header.header_checksum))
+        print('Calculated checksum: {}'.format(header.calculated_checksum))
+
+        print()
+        hexview.print_canonical(header.header, header.header_address)
+        print()
+
+    except FileNotFoundError:
+        print('File {} was not found'.format(args.filename))
 
 
 if __name__ == '__main__':
