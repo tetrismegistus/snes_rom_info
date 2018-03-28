@@ -197,7 +197,7 @@ def main(args):
         except FileNotFoundError:
             print('File {} was not found'.format(f))
         except Exception as e:
-            print('General error {}'.format(e))
+            print('In {}: General error {}.  May not be an SNES ROM file.'.format(f, e))
 
 
 if __name__ == '__main__':
