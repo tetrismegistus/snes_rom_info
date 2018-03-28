@@ -49,14 +49,15 @@ def print_canonical(file, address):
 
 
 def main(args):
-    file = read_file(args.filename, args.n, args.s)
-    print_canonical(file, args.s)
+    for f in args.filename:
+        file = read_file(f, args.n, args.s)
+        print_canonical(file, args.s)
 
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(prog='hexview.py', usage='%(prog)s filename')
 
-    parser.add_argument('filename', help="The file you wish to hexdump")
+    parser.add_argument('filename', help="The file you wish to hexdump", nargs='*')
     parser.add_argument('-n', help="Output n bytes of output", type=int)
     parser.add_argument('-s', help="Skip n bytes", type=int, default=0)
 

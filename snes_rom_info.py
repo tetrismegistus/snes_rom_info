@@ -167,38 +167,41 @@ def read_in_chunks(file_object, chunk_size=500000):
 
 
 def main(args):
-    try:
-        header = Header(args.filename)
-        print()
+    for f in args.filename:
+        try:
+            header = Header(f)
+            print()
 
-        if header.smc_offset > 0:
-            smc = 'Yes'
-        else:
-            smc = 'No'
+            if header.smc_offset > 0:
+                smc = 'Yes'
+            else:
+                smc = 'No'
 
-        print('Game Title: {}'.format(header.game_title))
-        print('SMC Header: {}'.format(smc))
-        print('Rom Mapping: {}'.format(header.rom_mapping))
-        print('Rom Type: {}'.format(header.rom_type))
-        print('Rom Size: {} MegaBits'.format(header.rom_size))
-        print('SRAM Size: {} Kilobits'.format(header.sram_size))
-        print('Country: {}'.format(header.country))
-        print('Licensee: {}'.format(header.licensee))
-        print('Game Version: {}'.format(header.version))
-        print('Checksum Complement: {}'.format(header.checksum_complement))
-        print('Specified Checksum: {}'.format(header.header_checksum))
-        print('Calculated checksum: {}'.format(header.calculated_checksum))
+            print('Game Title: {}'.format(header.game_title))
+            print('SMC Header: {}'.format(smc))
+            print('Rom Mapping: {}'.format(header.rom_mapping))
+            print('Rom Type: {}'.format(header.rom_type))
+            print('Rom Size: {} MegaBits'.format(header.rom_size))
+            print('SRAM Size: {} Kilobits'.format(header.sram_size))
+            print('Country: {}'.format(header.country))
+            print('Licensee: {}'.format(header.licensee))
+            print('Game Version: {}'.format(header.version))
+            print('Checksum Complement: {}'.format(header.checksum_complement))
+            print('Specified Checksum: {}'.format(header.header_checksum))
+            print('Calculated checksum: {}'.format(header.calculated_checksum))
 
-        print()
-        hexview.print_canonical(header.header, header.header_address)
-        print()
+            print()
+            hexview.print_canonical(header.header, header.header_address)
+            print()
 
-    except FileNotFoundError:
-        print('File {} was not found'.format(args.filename))
+        except FileNotFoundError:
+            print('File {} was not found'.format(f))
+        except Exception as e:
+            print('General error {}'.format(e))
 
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(prog='snes_rom_info.py', usage='%(prog)s filename')
-    parser.add_argument('filename', help="The ROM you wish to analyze")
+    parser.add_argument('filename', help="The ROM you wish to analyze", nargs='*')
     args = parser.parse_args()
     main(args)
